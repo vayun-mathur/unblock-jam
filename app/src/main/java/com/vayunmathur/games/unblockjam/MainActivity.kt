@@ -346,7 +346,16 @@ fun GameBoard(
                                         }
 
                                         if (isMainBlock && block.position.y == levelData.exit.y) {
-                                            maxX = levelData.exit.x
+                                            var pathToExitIsClear = true
+                                            for (x in (maxX + block.dimension.width) until levelData.dimension.width) {
+                                                if (isOccupied(x, block.position.y)) {
+                                                    pathToExitIsClear = false
+                                                    break
+                                                }
+                                            }
+                                            if (pathToExitIsClear) {
+                                                maxX = levelData.exit.x
+                                            }
                                         }
 
                                         minOffset = cellWidth * minX
