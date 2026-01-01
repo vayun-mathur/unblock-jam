@@ -81,6 +81,11 @@ fun GameScreen(completedLevelsRepository: CompletedLevelsRepository) {
     LaunchedEffect(Unit) {
         while(levelIndex.toString() in levelStats) {
             levelIndex++
+            if(levelIndex == LevelData.LEVELS.size) {
+                levelIndex = 0
+                currentLevelData = LevelData.LEVELS[0]
+                break
+            }
             currentLevelData = LevelData.LEVELS[levelIndex]
         }
     }
